@@ -50,7 +50,7 @@ class CASino::ActiveRecordAuthLogicAuthenticator
 
   def validate_options
     raise ArgumentError, "Table name is missing" if @options[:table].blank?
-    if @options[:encryptor] && !(@options[:encryptor].in? allowed_encryptors)
+    if @options[:encryptor] && !(allowed_encryptors.include?(@options[:encryptor]))
       raise ArgumentError, "Bad encryptor. Available encryptors: #{allowed_encryptors.join(',')}"
     end
   end
@@ -60,11 +60,7 @@ class CASino::ActiveRecordAuthLogicAuthenticator
   end
 
   def get_model_name
-    if @options[:model_name]
-      @options[:model_name]
-    else
-      @options[:table]
-    end
+    @options[:model_name].present? ? @options[:model_name] : @options[:table]
   end
 
   def classify_table_model_name model_name
