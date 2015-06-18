@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/ypcatify'
   s.license     = 'MIT'
   s.summary     = 'Provides mechanism to use ActiveRecord with AuthLogic as an authenticator for CASino.'
-  s.description = 'This gem can be used to allow the CASino backend to authenticate against an SQL server using ActiveRecord.'
+  s.description = 'This gem can be used to allow the CASino backend to authenticate against an SQL server using ActiveRecord with AuthLogic.'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
@@ -26,5 +26,4 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'activerecord', '>= 4.1.0', '< 4.3.0'
   s.add_runtime_dependency 'authlogic', '~> 3.4.5'
   s.add_runtime_dependency 'casino', '>= 3.0.0', '< 5.0.0'
-  s.add_runtime_dependency 'phpass-ruby', '~> 0.1'
 end
