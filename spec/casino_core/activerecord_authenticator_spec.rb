@@ -3,7 +3,6 @@ require 'casino/activerecord_authlogic_authenticator'
 
 describe CASino::ActiveRecordAuthLogicAuthenticator do
 
-  let(:pepper) { nil }
   let(:extra_attributes) {{ external_id: 'external_id' }}
   let(:options) do
     {
@@ -15,7 +14,6 @@ describe CASino::ActiveRecordAuthLogicAuthenticator do
       username_column: 'email',
       password_column: 'password',
       password_salt_column: 'password_salt',
-      pepper: pepper,
       extra_attributes: extra_attributes
     }
   end
@@ -156,46 +154,6 @@ describe CASino::ActiveRecordAuthLogicAuthenticator do
       end
     end
 
-    context 'support for bcrypt' do
-      before do
-        user_class.create!(
-          username: 'test2',
-          password: '$2a$10$dRFLSkYedQ05sqMs3b265e0nnJSoa9RhbpKXU79FDPVeuS1qBG7Jq', # password: testpassword2
-          mail_address: 'mail@example.org')
-      end
-
-      it 'is able to handle bcrypt password hashes' do
-        subject.validate('test2', 'testpassword2').should be_instance_of(Hash)
-      end
-    end
-
-    context 'support for bcrypt with pepper' do
-      let(:pepper) { 'abcdefg' }
-
-      before do
-        user_class.create!(
-          username: 'test3',
-          password: '$2a$10$ndCGPWg5JFMQH/Kl6xKe.OGNaiG7CFIAVsgAOJU75Q6g5/FpY5eX6', # password: testpassword3, pepper: abcdefg
-          mail_address: 'mail@example.org')
-      end
-
-      it 'is able to handle bcrypt password hashes' do
-        subject.validate('test3', 'testpassword3').should be_instance_of(Hash)
-      end
-    end
-
-    context 'support for phpass' do
-      before do
-        user_class.create!(
-          username: 'test4',
-          password: '$P$9IQRaTwmfeRo7ud9Fh4E2PdI0S3r.L0', # password: test12345
-          mail_address: 'mail@example.org')
-      end
-
-      it 'is able to handle phpass password hashes' do
-        subject.validate('test4', 'test12345').should be_instance_of(Hash)
-      end
-    end
 
     context 'support for connection string' do
 
@@ -204,7 +162,7 @@ describe CASino::ActiveRecordAuthLogicAuthenticator do
       end
 
       it 'returns the username' do
-        described_class.new(connection_as_string).load_user_data('test')[:username].should eq('test')
+        described_class.new(connection_as_string).load_user_data('test@exmaple.com')[:username].should eq('test@exmaple.com')
       end
     end
 
