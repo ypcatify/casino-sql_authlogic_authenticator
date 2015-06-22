@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path('../lib', __FILE__)
-require 'casino/activerecord_authlogic_authenticator/version'
+require 'casino/sql_authlogic_authenticator/version'
 
 Gem::Specification.new do |s|
   s.name        = 'casino-activerecord_authlogic_authenticator'
-  s.version     = CASino::ActiveRecordAuthLogicAuthenticator::VERSION
+  s.version     = CASino::SQLAuthLogicAuthenticator::VERSION
   s.authors     = ['Marcin Ożóg']
   s.email       = ['marcin@itgo.pl']
-  s.homepage    = 'https://github.com/ypcatify/casino-activerecord_authlogic_authenticator'
+  s.homepage    = 'https://github.com/ypcatify/casino-sql_authlogic_authenticator'
   s.license     = 'MIT'
   s.summary     = 'Provides mechanism to use ActiveRecord with AuthLogic as an authenticator for CASino.'
   s.description = 'This gem can be used to allow the CASino backend to authenticate against an SQL server using ActiveRecord with AuthLogic.'

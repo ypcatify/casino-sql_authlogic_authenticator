@@ -1,7 +1,7 @@
 require 'active_record'
 require 'authlogic'
 
-class CASino::ActiveRecordAuthLogicAuthenticator
+class CASino::SQLAuthLogicAuthenticator
 
   class AuthDatabase < ::ActiveRecord::Base
     self.abstract_class = true

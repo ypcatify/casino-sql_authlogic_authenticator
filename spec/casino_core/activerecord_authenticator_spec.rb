@@ -1,9 +1,10 @@
 require 'spec_helper'
-require 'casino/activerecord_authlogic_authenticator'
+require 'casino/sql_authlogic_authenticator'
 
-describe CASino::ActiveRecordAuthLogicAuthenticator do
+describe CASino::SQLAuthLogicAuthenticator do
 
   let(:extra_attributes) {{ external_id: 'external_id' }}
+  let(:options) {{ encryptor: 'Sha512' }}
   let(:options) do
     {
       connection: {
@@ -14,6 +15,7 @@ describe CASino::ActiveRecordAuthLogicAuthenticator do
       username_column: 'email',
       password_column: 'password',
       password_salt_column: 'password_salt',
+      encryptor: "Sha512",
       extra_attributes: extra_attributes
     }
   end
@@ -101,7 +103,6 @@ describe CASino::ActiveRecordAuthLogicAuthenticator do
   end
 
   describe '#validate' do
-
     context 'valid username' do
       context 'valid password' do
         it 'returns the username' do
@@ -114,7 +115,6 @@ describe CASino::ActiveRecordAuthLogicAuthenticator do
 
         context 'when no extra attributes given' do
           let(:extra_attributes) { nil }
-
           it 'returns an empty hash for extra attributes' do
             subject.validate('test@exmaple.com', '123qwe')[:extra_attributes].should eq({})
           end
@@ -156,11 +156,9 @@ describe CASino::ActiveRecordAuthLogicAuthenticator do
 
 
     context 'support for connection string' do
-
       it 'should not raise an error' do
         expect{described_class.new(connection_as_string)}.to_not raise_error
       end
-
       it 'returns the username' do
         described_class.new(connection_as_string).load_user_data('test@exmaple.com')[:username].should eq('test@exmaple.com')
       end

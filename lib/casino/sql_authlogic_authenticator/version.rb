@@ -1,5 +1,5 @@
 module CASino
-  class ActiveRecordAuthLogicAuthenticator
+  class SQLAuthLogicAuthenticator
     VERSION = '0.0.1'
   end
 end

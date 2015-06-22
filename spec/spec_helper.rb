@@ -9,7 +9,7 @@ SimpleCov.start do
 end
 
 require 'rspec'
-require 'casino-activerecord_authlogic_authenticator'
+require 'casino-sql_authlogic_authenticator'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.

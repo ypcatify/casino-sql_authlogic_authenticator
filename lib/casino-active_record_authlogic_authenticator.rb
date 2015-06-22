@@ -1,1 +1,0 @@
-require 'casino-activerecord_authlogic_authenticator'
