@@ -1,5 +1,5 @@
 Provides mechanism to use SQLAuthlogic as an authenticator for [CASino](https://github.com/rbCAS/CASino).
-Allows to migrate from RubyCAS to CASino using the same users table.
+Allows to migrate from [RubyCAS](http://rubycas.github.io/) to CASino using the same users table.
 
 ## Installation
 
@@ -12,7 +12,7 @@ gem "casino-sql_authlogic_authenticator", github: "ypcatify/casino-sql_authlogic
 ## Configuration
 
 To use the SQLAuthLogic authenticator, configure it in your cas.yml:
-
+```yaml
     authenticators:
       my_company_sql:
         authenticator: "SQLAuthLogic"
@@ -31,7 +31,7 @@ To use the SQLAuthLogic authenticator, configure it in your cas.yml:
           extra_attributes:
             email: "email_database_column"
             fullname: "displayname_database_column"
-
+```
 
 ## Copyright
 
