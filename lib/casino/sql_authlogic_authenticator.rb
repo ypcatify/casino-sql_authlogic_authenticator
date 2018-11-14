@@ -56,7 +56,7 @@ class CASino::SQLAuthLogicAuthenticator
   end
 
   def allowed_encryptors
-    ["Sha512", "AES256", "BCrypt", "MD5", "Sha1"]
+    ["Sha512", "AES256", "BCrypt", "MD5", "Sha1", "SCrypt"]
   end
 
   def get_model_name
