@@ -16,3 +16,6 @@ doc
 pkg
 
 /Gemfile.lock
+
+# exclude gem builds
+.gem
